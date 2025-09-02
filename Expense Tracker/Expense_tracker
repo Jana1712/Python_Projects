@@ -1,0 +1,74 @@
+import csv 
+from datetime import datetime
+
+FILENAME = 'expense.csv'
+
+def add_expense():
+    try:
+        # Validate date format
+        while True:
+            date = input("Enter the date (YYYY-MM-DD): ")
+            try:
+                datetime.strptime(date, '%Y-%m-%d')
+                break
+            except ValueError:
+                print("Invalid date format. Please use YYYY-MM-DD: ")
+                
+        category = input("Enter the Category (E.g Food, Travel, Entertainment): ")
+        description = input("Enter a short description: ")
+        amount = float(input("Enter the amount: "))  # Fixed the prompt
+        
+        # Save expense to csv file
+        with open(FILENAME, mode='a', newline="") as file:  # Fixed 'neline' to 'newline'
+            writer = csv.writer(file)
+            writer.writerow([date, category, description, amount])
+        print("Expense Added Successfully")    
+    except ValueError:
+        print("Invalid amount. Please enter a valid number.")
+        
+# Function to view expenses
+def view_expenses():
+    try:
+        with open(FILENAME, mode='r') as file:
+            reader = csv.reader(file)
+            # Skip header if it exists
+            try:
+                header = next(reader)
+                if header != ['Date', 'Category', 'Description', 'Amount']:
+                    # If file has content but no proper header, reset file pointer
+                    file.seek(0)
+            except StopIteration:
+                # File is empty
+                print("No expenses found. Start by adding some.")
+                return
+                
+            print(f"{'Date':<12} {'Category':<15} {'Description':<25} {'Amount':<10}")
+            print("_" * 65)
+            for row in reader:
+                print(f"{row[0]:<12} {row[1]:<15} {row[2]:<25} {row[3]:<10}")
+                            
+    except FileNotFoundError:
+        print("No expenses found. Start by adding some.")
+        
+# Main menu
+def main():
+    while True:
+        print("\nExpense Tracker")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Exit")
+        
+        choice = input("Choose an Option: ")
+        if choice == '1':
+            add_expense()
+        elif choice == '2':
+            view_expenses()
+        elif choice == '3':
+            print("Good Bye!")
+            break  # Added break to exit the loop
+        else:
+            print("Invalid choice. Please try again.") 
+            
+# Run program
+if __name__ == "__main__":
+    main()
