@@ -71,4 +71,43 @@ def main():
             
 # Run program
 if __name__ == "__main__":
+
     main()
+
+
+
+#Output 
+
+
+Expense Tracker
+1. Add Expense
+2. View Expenses
+3. Exit
+Choose an Option: 1
+Enter the date (YYYY-MM-DD): 2001-12-09
+Enter the Category (E.g Food, Travel, Entertainment): Food
+Enter a short description: i bought chicken rice
+Enter the amount: 120
+Expense Added Successfully
+
+Expense Tracker
+1. Add Expense
+2. View Expenses
+3. Exit
+Choose an Option: 2
+Date         Category        Description               Amount
+_________________________________________________________________
+2001-12-09   Food            i bought chicken rice     120.0
+
+Expense Tracker
+1. Add Expense
+2. View Expenses
+3. Exit
+Choose an Option: & "C:/Users/Janakiraman B/AppData/Local/Microsoft/WindowsApps/python3.13.exe" "c:/Users/Janakiraman B/Downloads/Udemy Certificates/Projects/python mini projects/Expense_tracker"
+Invalid choice. Please try again.
+
+Expense Tracker
+1. Add Expense
+2. View Expenses
+3. Exit
+Choose an Option:
